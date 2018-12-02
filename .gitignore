@@ -24,6 +24,3 @@
 /dist/
 /nbdist/
 /.nb-gradle/
-src/main/java/netty/transfer/
-src/main/resources/static/
-src/main/resources/templates/
