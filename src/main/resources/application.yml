@@ -1,0 +1,30 @@
+##################################################
+#
+# Server 服务端相关配置
+#
+##################################################
+server:
+  # 配置api端口号
+  port: 8080
+  # tomcat的URI编码
+  tomcat:
+    uri-encoding: UTF-8
+
+##################################################
+#
+# mybatis 配置
+#
+##################################################
+# mybatis 配置
+mybatis:
+  type-aliases-package: com.trey.chat.pojo
+  mapper-locations: classpath:mapper/*.xml
+# 通用Mapper配置
+mapper:
+  not-empty: false
+  identity: MYSQL
+# 分页插件配置
+pagehelper:
+  helper-dialect: mysql
+  support-methods-arguments: true
+  params: count=countSql
