@@ -76,9 +76,17 @@
             <version>1.5</version>
         </dependency>
 
+        <!--日期工具类-->
         <dependency>
             <groupId>joda-time</groupId>
             <artifactId>joda-time</artifactId>
+        </dependency>
+
+        <!--二维码生成工具-->
+        <dependency>
+            <groupId>com.google.zxing</groupId>
+            <artifactId>javase</artifactId>
+            <version>3.3.3</version>
         </dependency>
 
         <dependency>

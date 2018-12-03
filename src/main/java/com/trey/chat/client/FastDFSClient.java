@@ -96,4 +96,10 @@ public class FastDFSClient {
         StorePath storePath = storageClient.uploadImageAndCrtThumbImage(file.getInputStream(), file.getSize(), file.getContentType(), null);
         return storePath.getPath();
     }
+
+
+    public String uploadQRCode(MultipartFile file) throws IOException {
+        StorePath storePath = storageClient.uploadFile(file.getInputStream(), file.getSize(), file.getContentType(), null);
+        return storePath.getPath();
+    }
 }

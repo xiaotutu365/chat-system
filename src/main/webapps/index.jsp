@@ -14,28 +14,32 @@
         window.CHAT = {
             // 若干变量与方法
             socket: null,
-            init: function() {
-                if(window.WebSocket) {
+            init: function () {
+                if (window.WebSocket) {
+                    // 判断当前socket是否已经连接，如果已经连接，则不需要重复初始化
+                    if (CHAT.socket != null && CHAT.socket !== undefined && CHAT.socket.readyState === WebSocket.OPEN) {
+                        return false;
+                    }
+
                     CHAT.socket = new WebSocket("ws://192.168.1.101:9999/ws");
 
                     CHAT.socket.onopen = function () {
                         console.log("建立连接成功...");
                     },
-
-                    CHAT.socket.onmessage = function(e) {
+                    CHAT.socket.onmessage = function (e) {
                         var content = document.getElementById("content");
                         var contentAppend = content.innerHTML;
-                        content.innerHTML = contentAppend + e.data  + "<br />";
+                        content.innerHTML = contentAppend + e.data + "<br />";
                         console.log(e);
                     },
-                    CHAT.socket.onclose = function() {
+                    CHAT.socket.onclose = function () {
                         console.log("连接关闭...");
                     },
-                    CHAT.socket.onerror = function() {
+                    CHAT.socket.onerror = function () {
                         console.log("发生错误...");
                     }
                 } else {
-                    alert("您使用的浏览器不支持WebSocket");
+                    alert("手机设备过久，请升级手机设备...");
                 }
             }
         };

@@ -27,22 +27,7 @@ public class UserController {
     @Autowired
     private FastDFSClient fastDFSClient;
 
-    /**
-     * 保存用户信息
-     *
-     * @param user
-     * @return
-     */
-    public User saveUser(User user) {
-        String userId = Sid.nextShort();
-        // todo 为每个用户生成一个唯一的二维码
-        user.setQrcode("");
-        user.setId(userId);
 
-        userService.saveUser(user);
-
-        return user;
-    }
 
     @PostMapping("/uploadFaceBase64")
     public JSONResult uploadFaceBase64(@RequestBody UserBo userBo) {
