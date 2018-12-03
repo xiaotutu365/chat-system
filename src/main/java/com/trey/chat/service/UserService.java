@@ -4,6 +4,7 @@ import com.trey.chat.model.User;
 import com.trey.chat.repository.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 @Service
 public class UserService {
@@ -24,4 +25,13 @@ public class UserService {
         return userRepository.save(user);
     }
 
+    /**
+     * 修改用户信息
+     * @param user
+     * @return
+     */
+    @Transactional
+    public User updateUser(User user) {
+        return userRepository.save(user);
+    }
 }

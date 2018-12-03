@@ -21,4 +21,8 @@ public class JSONResult {
     public static JSONResult build(Integer status, String msg, Object data) {
         return new JSONResult(status, msg, data);
     }
+
+    public static JSONResult ok(Object data) {
+        return new JSONResult(200, "成功", data);
+    }
 }

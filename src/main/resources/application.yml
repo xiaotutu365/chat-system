@@ -9,7 +9,6 @@ server:
   # tomcat的URI编码
   tomcat:
     uri-encoding: UTF-8
-
 ##################################################
 #
 # mybatis 配置
@@ -28,3 +27,30 @@ pagehelper:
   helper-dialect: mysql
   support-methods-arguments: true
   params: count=countSql
+
+spring:
+  datasource:
+    name: mysql
+    url: jdbc:mysql://localhost:3306/muxin-dev?useUnicode=true&characterEncoding=UTF-8
+    driver-class-name: com.mysql.jdbc.Driver
+    username: root
+    password: root
+
+##################################################
+#
+# 分布式文件系统fastdfs配置
+#
+##################################################
+fdfs:
+  so-timeout: 1501
+  connect-timeout: 601
+  # 缩略图生成参数
+  thumb-image:
+    height: 80
+    width: 80
+  # TrackerList参数，支持多个
+  tracker-list:
+    - 192.168.80.129:22122
+  pool:
+    max-total: 153
+    max-wait-millis: 102

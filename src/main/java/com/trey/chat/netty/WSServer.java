@@ -6,6 +6,7 @@ import io.netty.channel.EventLoopGroup;
 import io.netty.channel.nio.NioEventLoopGroup;
 import io.netty.channel.socket.nio.NioServerSocketChannel;
 import org.springframework.stereotype.Component;
+import websocket.WSServerInitializer;
 
 @Component
 public class WSServer {
@@ -32,7 +33,7 @@ public class WSServer {
         server = new ServerBootstrap();
         server.group(mainGroup, subGroup)
                 .channel(NioServerSocketChannel.class)
-                .childHandler(null);
+                .childHandler(new WSServerInitializer());
     }
 
     public void start() {
