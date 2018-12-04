@@ -19,13 +19,13 @@ import java.util.Map;
 @Component
 public class QRCodeUtils {
 
-    @Value("qrcode.width")
+    @Value("${qrcode.width}")
     private int width;
 
-    @Value("qrcode.height")
+    @Value("${qrcode.height}")
     private int height;
 
-    @Value("qrcode.contentType")
+    @Value("${qrcode.contentType}")
     private String contentType;
 
     /**

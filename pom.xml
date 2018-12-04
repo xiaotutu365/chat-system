@@ -89,17 +89,25 @@
             <version>3.3.3</version>
         </dependency>
 
+        <!--生成setter,getter,constructor-->
         <dependency>
             <groupId>org.projectlombok</groupId>
             <artifactId>lombok</artifactId>
             <optional>true</optional>
         </dependency>
 
-        <!-- fastdfs客戶端 -->
+        <!-- FastDFS客戶端 -->
         <dependency>
             <groupId>com.github.tobato</groupId>
             <artifactId>fastdfs-client</artifactId>
             <version>1.26.2</version>
+        </dependency>
+
+        <!--fastjson，json转化工具-->
+        <dependency>
+            <groupId>com.alibaba</groupId>
+            <artifactId>fastjson</artifactId>
+            <version>1.2.40</version>
         </dependency>
 
         <dependency>
