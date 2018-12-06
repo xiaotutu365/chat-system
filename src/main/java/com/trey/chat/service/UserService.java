@@ -60,9 +60,7 @@ public class UserService {
 
         user.setQrcode(qrCodeUrl);
         user.setId(userId);
-
         userRepository.save(user);
-
         return user;
     }
 
@@ -72,7 +70,7 @@ public class UserService {
      * @param user
      * @return
      */
-    @Transactional
+    @Transactional(propagation = Propagation.REQUIRED)
     public User updateUser(User user) {
         return userRepository.save(user);
     }

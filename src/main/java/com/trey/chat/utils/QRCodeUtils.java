@@ -43,7 +43,6 @@ public class QRCodeUtils {
         // 设置图片的边距
         hints.put(EncodeHintType.MARGIN, 2);
 
-
         try {
             // 生成二维码
             BitMatrix bitMatrix = new MultiFormatWriter().encode(content, BarcodeFormat.QR_CODE, width, height, hints);

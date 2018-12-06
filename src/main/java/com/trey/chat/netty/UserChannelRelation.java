@@ -7,6 +7,8 @@ import java.util.Map;
 
 /**
  * 用户id和channel的关联关系
+ * @author trey
+ * @version V1.0.0
  */
 public class UserChannelRelation {
     private static Map<String, Channel> manager = new HashMap<>();

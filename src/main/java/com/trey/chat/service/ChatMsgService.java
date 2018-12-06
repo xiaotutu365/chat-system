@@ -24,7 +24,7 @@ public class ChatMsgService {
      * @param chatMsgObj
      * @return
      */
-//    @Transactional(propagation = Propagation.REQUIRED)
+    @Transactional(propagation = Propagation.REQUIRED)
     public ChatMsg saveChatMsg(ChatMsgObj chatMsgObj) {
         ChatMsg chatMsg = new ChatMsg();
         chatMsg.setId(Sid.nextShort());

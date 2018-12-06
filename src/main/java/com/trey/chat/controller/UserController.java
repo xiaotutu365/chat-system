@@ -59,6 +59,6 @@ public class UserController {
         user.setFaceImageBig(url);
         userService.updateUser(user);
 
-        return JSONResult.ok(user);
+        return JSONResult.OK(user);
     }
 }
