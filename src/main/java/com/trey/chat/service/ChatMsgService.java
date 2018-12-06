@@ -6,6 +6,7 @@ import com.trey.chat.netty.ChatMsgObj;
 import com.trey.chat.repository.ChatMsgRepository;
 import org.joda.time.DateTime;
 import org.n3r.idworker.Sid;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Propagation;
 import org.springframework.transaction.annotation.Transactional;
@@ -14,6 +15,7 @@ import java.util.List;
 
 @Service
 public class ChatMsgService {
+    @Autowired
     private ChatMsgRepository chatMsgRepository;
 
     /**
@@ -22,7 +24,7 @@ public class ChatMsgService {
      * @param chatMsgObj
      * @return
      */
-    @Transactional(propagation = Propagation.REQUIRED)
+//    @Transactional(propagation = Propagation.REQUIRED)
     public ChatMsg saveChatMsg(ChatMsgObj chatMsgObj) {
         ChatMsg chatMsg = new ChatMsg();
         chatMsg.setId(Sid.nextShort());

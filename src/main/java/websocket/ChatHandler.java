@@ -61,6 +61,7 @@ public class ChatHandler extends SimpleChannelInboundHandler<TextWebSocketFrame>
             ChatMsg chatMsg = chatMsgService.saveChatMsg(chatMsgObj);
             String msgId = chatMsg.getId();
             chatMsgObj.setMsgId(msgId);
+
             // 发送消息，从全局用户Channel关系中获取接收方的channel
             Channel receiverChannel = UserChannelRelation.get(chatMsgObj.getReceiverId());
             if (receiverChannel == null) {
@@ -88,12 +89,13 @@ public class ChatHandler extends SimpleChannelInboundHandler<TextWebSocketFrame>
             }
         } else if (action == MsgActionEnum.KEEPALIVE.getCode()) {
             // 2.4 心跳类型的消息
+            System.out.println("打印心跳包通道=>" + currentChannel);
         }
 
-        for (Channel channel : users) {
-            channel.writeAndFlush(
-                    new TextWebSocketFrame("服务器[" + ctx.channel().remoteAddress() + "]在[" + DateTime.now() + "]接收到消息，消息为:[" + content + "]"));
-        }
+//        for (Channel channel : users) {
+//            channel.writeAndFlush(
+//                    new TextWebSocketFrame("服务器[" + ctx.channel().remoteAddress() + "]在[" + DateTime.now() + "]接收到消息，消息为:[" + content + "]"));
+//        }
 
         // 该行和上面的效果等价的
         // users.writeAndFlush(new TextWebSocketFrame("[服务器zai ：]" + LocalDateTime.now() + "接收到消息， 消息为：" + content));
@@ -132,5 +134,14 @@ public class ChatHandler extends SimpleChannelInboundHandler<TextWebSocketFrame>
         // 发生异常之后关闭连接（关闭channel）
         ctx.channel().close();
         users.remove(ctx.channel());
+    }
+
+    @Override
+    public void channelActive(ChannelHandlerContext ctx) throws Exception {
+        super.channelActive(ctx);
+    }
+
+    public static ChannelGroup getUsers() {
+        return users;
     }
 }

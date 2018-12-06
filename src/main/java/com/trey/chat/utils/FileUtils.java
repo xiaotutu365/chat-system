@@ -4,11 +4,13 @@ import org.springframework.mock.web.MockMultipartFile;
 import org.springframework.util.Base64Utils;
 import org.springframework.web.multipart.MultipartFile;
 
-import java.io.*;
+import java.io.File;
+import java.io.FileInputStream;
+import java.io.IOException;
+import java.io.InputStream;
 import java.net.HttpURLConnection;
 import java.net.MalformedURLException;
 import java.net.URL;
-import java.util.Base64;
 
 public class FileUtils {
 

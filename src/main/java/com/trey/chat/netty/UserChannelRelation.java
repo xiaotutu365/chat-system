@@ -21,7 +21,7 @@ public class UserChannelRelation {
 
     public static void output() {
         for (HashMap.Entry<String, Channel> entry : manager.entrySet()) {
-            System.out.println("userId:" + entry.getKey() + ", channelId" + entry.getValue().id().asLongText());
+            System.out.println("userId:" + entry.getKey() + ", channelId:" + entry.getValue().id().asLongText());
         }
     }
 }
