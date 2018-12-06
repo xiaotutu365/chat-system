@@ -29,20 +29,17 @@ window.App = {
      * @param msg
      * @param flag 判断本条消息是我发送的,还是朋友发送的,1:我, 2:朋友
      */
-    saveUserChatHistory: function(myId, friendId, msg, flag) {
+    saveUserChatHistory: function (myId, friendId, msg, flag) {
         var chatKey = "chat-" + myId + "-" + friendId;
         // 从本地缓存获取聊天记录是否存在
         var chatHistoryListStr = localStorage.getItem(chatKey);
-        // if() {
-        //
-        // }
     },
     /**
      * 获取用户的聊天记录
      * @param myId
      * @param friendId
      */
-    getUserChatHistory: function(myId, friendId) {
+    getUserChatHistory: function (myId, friendId) {
 
     },
     ChatHistory: function (myId, friendId, msg, flag) {

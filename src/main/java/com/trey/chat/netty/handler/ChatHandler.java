@@ -1,4 +1,4 @@
-package websocket;
+package com.trey.chat.netty.handler;
 
 import com.alibaba.fastjson.JSON;
 import com.alibaba.fastjson.JSONObject;
@@ -8,7 +8,6 @@ import com.trey.chat.netty.ChatMsgObj;
 import com.trey.chat.netty.DataContent;
 import com.trey.chat.netty.UserChannelRelation;
 import com.trey.chat.service.ChatMsgService;
-import com.trey.chat.service.UserService;
 import com.trey.chat.utils.SpringUtils;
 import io.netty.channel.Channel;
 import io.netty.channel.ChannelHandlerContext;
@@ -17,7 +16,7 @@ import io.netty.channel.group.ChannelGroup;
 import io.netty.channel.group.DefaultChannelGroup;
 import io.netty.handler.codec.http.websocketx.TextWebSocketFrame;
 import io.netty.util.concurrent.GlobalEventExecutor;
-import org.joda.time.DateTime;
+import lombok.extern.slf4j.Slf4j;
 
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -31,15 +30,25 @@ import java.util.Objects;
  * @author trey
  * @version V1.0.0
  */
+@Slf4j
 public class ChatHandler extends SimpleChannelInboundHandler<TextWebSocketFrame> {
-    // 用于记录和管理所有客户端的channel
+    /**
+     * 用于记录和管理所有客户端的channel
+     */
     private static ChannelGroup users = new DefaultChannelGroup(GlobalEventExecutor.INSTANCE);
 
+    /**
+     * 消息处理主逻辑
+     *
+     * @param ctx
+     * @param msg 接收到的消息
+     * @throws Exception
+     */
     @Override
     protected void channelRead0(ChannelHandlerContext ctx, TextWebSocketFrame msg) throws Exception {
         // 获取客户端传输过来的消息
         String content = msg.text();
-        System.out.println("接受到的数据：" + content);
+        log.info("接收到的数据为：{}", content);
 
         Channel currentChannel = ctx.channel();
 
@@ -91,15 +100,6 @@ public class ChatHandler extends SimpleChannelInboundHandler<TextWebSocketFrame>
             // 2.4 心跳类型的消息
             System.out.println("打印心跳包通道=>" + currentChannel);
         }
-
-//        for (Channel channel : users) {
-//            channel.writeAndFlush(
-//                    new TextWebSocketFrame("服务器[" + ctx.channel().remoteAddress() + "]在[" + DateTime.now() + "]接收到消息，消息为:[" + content + "]"));
-//        }
-
-        // 该行和上面的效果等价的
-        // users.writeAndFlush(new TextWebSocketFrame("[服务器zai ：]" + LocalDateTime.now() + "接收到消息， 消息为：" + content));
-
     }
 
     /**
@@ -113,12 +113,16 @@ public class ChatHandler extends SimpleChannelInboundHandler<TextWebSocketFrame>
         users.add(ctx.channel());
     }
 
+    /**
+     * 用户断开连接后，将该用户对应的通道从通道组中移除
+     *
+     * @param ctx
+     * @throws Exception
+     */
     @Override
     public void handlerRemoved(ChannelHandlerContext ctx) throws Exception {
         // 当触发handlerRemoved，ChannelGroup会自动移除对应客户端的channel
         users.remove(ctx.channel());
-        System.out.println("客户端断开，channel对应的长id为：" + ctx.channel().id().asLongText());
-        System.out.println("客户端断开，channel对应的短id为：" + ctx.channel().id().asShortText());
     }
 
     /**
@@ -136,11 +140,11 @@ public class ChatHandler extends SimpleChannelInboundHandler<TextWebSocketFrame>
         users.remove(ctx.channel());
     }
 
-    @Override
-    public void channelActive(ChannelHandlerContext ctx) throws Exception {
-        super.channelActive(ctx);
-    }
-
+    /**
+     * 获取用户组
+     *
+     * @return
+     */
     public static ChannelGroup getUsers() {
         return users;
     }

@@ -22,7 +22,7 @@ public class JSONResult {
         return new JSONResult(status, msg, data);
     }
 
-    public static JSONResult ok(Object data) {
-        return new JSONResult(200, "成功", data);
+    public static JSONResult OK(Object data) {
+        return new JSONResult(200, "操作成功", data);
     }
 }

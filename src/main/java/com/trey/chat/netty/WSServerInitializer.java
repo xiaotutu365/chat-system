@@ -1,5 +1,7 @@
-package websocket;
+package com.trey.chat.netty;
 
+import com.trey.chat.netty.handler.ChatHandler;
+import com.trey.chat.netty.handler.HeartBeatHandler;
 import io.netty.channel.ChannelInitializer;
 import io.netty.channel.ChannelPipeline;
 import io.netty.channel.socket.SocketChannel;
